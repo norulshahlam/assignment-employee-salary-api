@@ -36,7 +36,7 @@ By utilizing these technologies, the project is able to deliver a fast, reliable
 ### Hostname
 
 - dev profile: `http://localhost:8082`  
-- prod profile: `https://employee-salary-management-api.herokuapp.com/`  
+- prod profile: `https://assignment-employee-salary-api.herokuapp.com/`  
 
 ### Software requirements
 
@@ -57,7 +57,7 @@ To run the Bookstore API, follow these steps:
 
 - Clone this repository to your local machine by running the below command in terminal:
 
-      git clone https://github.com/norulshahlam/employee-salary-management-assignment.git
+      git clone https://github.com/norulshahlam/assignment-employee-salary-api.git
 
 - Navigate to the project directory in the terminal/command prompt.
 
