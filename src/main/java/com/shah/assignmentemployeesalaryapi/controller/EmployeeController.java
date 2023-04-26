@@ -11,8 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class EmployeeController {
     public static final String USERS_ID = "/users/{id}";
     public static final String USERS = "/users";
     public static final String USERS_UPLOAD = "/users/upload";
-    public static final String API = "/api";
+    public static final String API = "/api/v1";
     private EmployeeService employeeService;
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -52,27 +51,35 @@ public class EmployeeController {
             @RequestParam(defaultValue = "0")
             @Min(value = 0, message = "offset cannot be negative")
             long offset,
+
             @RequestParam(defaultValue = "0")
             @Min(value = 0, message = "limit cannot be negative")
-            long limit,
+            @Digits(fraction = 0, integer = 9, message = "limit must be whole numbers")
+            String limit,
+
             @RequestParam(defaultValue = "0")
-            @Min(value = 0, message = "minSalary cannot be negative")
-            double minSalary,
+            @Min(value = 0, message = "minSalary must be at least 0")
+            @Digits(fraction = 2, integer = 9, message = "minSalary must be in digits, up to 2 decimal places")
+            String minSalary,
+
             @RequestParam(defaultValue = "4000")
             @Positive(message = "maxSalary must be more than zero")
-            double maxSalary,
+            @Digits(fraction = 2, integer = 9, message = "maxSalary must be in digits, up to 2 decimal places")
+            String maxSalary,
+
             @RequestParam(defaultValue = "id")
             String sortedBy,
+
             @RequestParam(defaultValue = "ASC")
             String sortDirection) {
         log.info("EmployeeController::getEmployeesWithParam");
         List<EmployeeDto> employeeList = employeeService.getEmployeesByParam(
-                minSalary,
-                maxSalary,
+                Double.valueOf(minSalary),
+                Double.valueOf(maxSalary),
                 sortedBy,
                 sortDirection,
                 offset,
-                limit);
+                Long.valueOf(limit));
         return SuccessResponse(employeeList);
     }
 

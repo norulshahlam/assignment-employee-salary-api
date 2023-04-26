@@ -27,8 +27,7 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({EmployeeException.class})
-    @ResponseBody
-    public EmployeeResponse handleSupplementException(EmployeeException e) {
+    public EmployeeResponse handleEmployeeException(EmployeeException e) {
         return EmployeeResponse.builder()
                 .status(FAILURE)
                 .data(e.getData())
@@ -45,7 +44,6 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({ConstraintViolationException.class})
-    @ResponseBody
     public EmployeeResponse handleConstraintViolationException(HttpServletRequest req, ConstraintViolationException e) {
 
         List<String> errorMessages = e.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
@@ -53,12 +51,11 @@ public class GlobalExceptionHandler {
         String collect = String.join(", ", errorMessages);
         return EmployeeResponse.builder()
                 .status(FAILURE)
-                .data(collect)
+                .message(collect)
                 .build();
     }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({Exception.class})
-    @ResponseBody
     public EmployeeResponse handleOtherException(Exception e) {
         return EmployeeResponse.builder()
                 .status(FAILURE)
