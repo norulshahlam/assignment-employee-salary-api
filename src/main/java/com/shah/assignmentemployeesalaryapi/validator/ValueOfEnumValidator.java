@@ -9,11 +9,11 @@ import java.util.stream.Stream;
 /**
  * @author NORUL
  */
-public class ValueOfEnumValidator implements ConstraintValidator<ValueOfEnum, CharSequence> {
+public class ValueOfEnumValidator implements ConstraintValidator<EnumValidation, CharSequence> {
     private List<String> acceptedValues;
 
     @Override
-    public void initialize(ValueOfEnum annotation) {
+    public void initialize(EnumValidation annotation) {
         acceptedValues = Stream.of(annotation.enumClass().getEnumConstants())
                 .map(Enum::name)
                 .collect(Collectors.toList());

@@ -3,7 +3,7 @@ package com.shah.assignmentemployeesalaryapi.controller;
 import com.shah.assignmentemployeesalaryapi.model.EmployeeDto;
 import com.shah.assignmentemployeesalaryapi.model.EmployeeResponse;
 import com.shah.assignmentemployeesalaryapi.service.EmployeeService;
-import com.shah.assignmentemployeesalaryapi.validator.ValueOfEnum;
+import com.shah.assignmentemployeesalaryapi.validator.EnumValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -74,7 +74,7 @@ public class EmployeeController {
             @RequestParam(defaultValue = "id")
             String sortedBy,
 
-            @ValueOfEnum(enumClass = Sort.Direction.class, message = "sortDirection value not valid")
+            @EnumValidation(enumClass = Sort.Direction.class, message = "sortDirection value not valid")
             @RequestParam(defaultValue = "ASC")
             String sortDirection) {
         log.info("EmployeeController::getEmployeesWithParam");
