@@ -3,15 +3,19 @@ package com.shah.assignmentemployeesalaryapi.controller;
 import com.shah.assignmentemployeesalaryapi.model.EmployeeDto;
 import com.shah.assignmentemployeesalaryapi.model.EmployeeResponse;
 import com.shah.assignmentemployeesalaryapi.service.EmployeeService;
+import com.shah.assignmentemployeesalaryapi.validator.ValueOfEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
 import java.io.IOException;
 import java.util.List;
 
@@ -70,6 +74,7 @@ public class EmployeeController {
             @RequestParam(defaultValue = "id")
             String sortedBy,
 
+            @ValueOfEnum(enumClass = Sort.Direction.class)
             @RequestParam(defaultValue = "ASC")
             String sortDirection) {
         log.info("EmployeeController::getEmployeesWithParam");

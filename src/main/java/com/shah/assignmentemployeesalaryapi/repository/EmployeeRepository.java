@@ -24,6 +24,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, String>, Jpa
         return (root, query, builder) -> builder.gt(root.get("salary"), min);
     }
 
+    /**
+     * Get salary less than or equal to input given.
+     * @param max Salary
+     * @return employee info that matches
+     */
     static Specification<Employee> salaryLessThanOrEqualTo(double max) {
         return ((root, query, builder) -> builder.lessThanOrEqualTo(root.get("salary"), max));
     }
