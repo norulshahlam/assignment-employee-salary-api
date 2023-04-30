@@ -74,17 +74,17 @@ public class EmployeeController {
             @RequestParam(defaultValue = "id")
             String sortedBy,
 
-            @ValueOfEnum(enumClass = Sort.Direction.class)
+            @ValueOfEnum(enumClass = Sort.Direction.class, message = "sortDirection value not valid")
             @RequestParam(defaultValue = "ASC")
             String sortDirection) {
         log.info("EmployeeController::getEmployeesWithParam");
         List<EmployeeDto> employeeList = employeeService.getEmployeesByParam(
-                Double.valueOf(minSalary),
-                Double.valueOf(maxSalary),
+                Double.parseDouble(minSalary),
+                Double.parseDouble(maxSalary),
                 sortedBy,
                 sortDirection,
                 offset,
-                Long.valueOf(limit));
+                Long.parseLong(limit));
         return SuccessResponse(employeeList);
     }
 
