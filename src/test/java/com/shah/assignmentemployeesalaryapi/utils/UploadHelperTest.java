@@ -34,7 +34,7 @@ public class UploadHelperTest {
 
     @Mock
     private static EmployeeRepository employeeRepository;
-    private static List<EmployeeDto> employeeDto = new ArrayList<>();
+    private static final List<EmployeeDto> employeeDto = new ArrayList<>();
     @InjectMocks
     private UploadHelper uploadHelper;
     private MultipartFile multipartFile;

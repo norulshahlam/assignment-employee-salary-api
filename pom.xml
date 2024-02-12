@@ -15,7 +15,7 @@
     <description>assignment-employee-salary-api</description>
     <properties>
         <java.version>11</java.version>
-        <springdoc.version>1.6.15</springdoc.version>
+        <springdoc.version>1.7.0</springdoc.version>
     </properties>
     <dependencies>
         <dependency>

@@ -51,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         checkFileEmpty(file);
         // parse csv - ok
         List<EmployeeDto> dto = csvParser(file);
-        // check if date & salary is correct format - ok
+        // check if date & salary is correct format
         employeeValidator(dto);
         // check for duplicate id in dto - throw error if exists
         findDuplicateId(dto);
